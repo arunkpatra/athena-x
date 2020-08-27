@@ -23,7 +23,7 @@ asciidoctorPdf {
         requires 'rouge'
         attributes 'build-gradle': file('build.gradle'),
                 'project-version': project.version,
-                'sourcedir': project.sourceSets.main.java.srcDirs[0],
+                'sourcedir': '../../../scripts',
                 'endpoint-url': 'http://example.org',
                 'source-highlighter': 'rouge',
                 'imagesdir': './images',
@@ -43,7 +43,7 @@ asciidoctor {
             'project-version'   : project.version,
             'source-highlighter': 'coderay',
             'build-gradle'      : file('build.gradle'),
-            'sourcedir'         : project.sourceSets.main.java.srcDirs[0],
+            'sourcedir'         : '../../../scripts',
             'endpoint-url'      : 'http://example.org',
             'imagesdir'         : 'images',
             'toc'               : 'left',

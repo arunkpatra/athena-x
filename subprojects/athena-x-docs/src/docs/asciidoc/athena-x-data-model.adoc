@@ -1,3 +1,4 @@
+:sourcedir: ../../../scripts
 [[athena-x-data-model]]
 == Data Model
 
@@ -46,7 +47,7 @@ The choice of the above dimensions are motivated by questions like:
 
 [NOTE]
 ====
-Keeping the above in view, a **star schema** is advisable. Also see suggested Distribution Style in a Redshift context
+Keeping the above in view, a **star schema** is advisable. Also, see suggested Distribution Style in a Redshift context
 in a later section.
 ====
 
@@ -69,7 +70,17 @@ Each of the above dimensions would lead to dimension datasets with non-overlappi
 
 The lowest level of granularity is: _redeemed value on a specific card._
 
+
 === Designing the Dimension Tables
+
+==== Card Table
+This table models a physical or digital card instance. Such cards are unique and will generally have a unique
+number associated with them. Such cards are always associated with a specific merchant and are an instance of a specific
+card product or type (e.g. _Happy Student eCard_)
+[source, postgresql]
+----
+include::{sourcedir}/card_table_ddl.sql[]
+----
 
 
 === Distribution Keys and Style
