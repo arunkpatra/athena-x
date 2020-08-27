@@ -1,4 +1,80 @@
 [[athena-x-data-model]]
-== Introduction
+== Data Model
 
 Athena X tries to deal with real world gift card transaction volumes.
+
+=== Designing the Fact Table
+
+The **grain** of the gift card sales fact table being considerd is: _Redeemed value by card, by time._ Hence,
+each record in the fact table is uniquely defined by the Gift Card ID, the redemption value and a redemption timestamp.
+Other dimensions associated with the fact table(see below), don't add to the uniqueness of the fact records.
+
+==== Business Process
+
+The business process in question is the **purchase and redemption of gift cards by retail consumers**. This is a slice
+of the broader gift card business which includes many other aspects other than purchase and redemption of cards.
+
+==== Measures of Fact
+
+We consider the following measures of fact.
+
+- Redemption dollar amount on a gift card.
+- Redemption Date/Time: Redemption date(either part or full) of the card.
+
+==== Dimensions of fact
+
+Since we are considering a **Transactional Fact Table**, it is normal to consider data at the most detailed level. This
+introduces cost at the ETL stage, but has substantial long-term cost savings.
+
+
+- Gift Card: The unique card (plastic/digital) purchased on which the transaction was done.
+- Customer: The customer who purchased the card.
+- Gift Card Type: The gift card type, e.g. _Happy Student eCard_, _Apple Store Card_ etc.
+- Merchant: The merchant who sells the card, e.g. _Kroger_, _Starbucks_ etc.
+- Category: The card category, e.g. _Dining_, _Entertainment_ etc.
+- Medium: The card delivery medium, e.g. _Physical_, _Digital_.
+- Business Model: The card business model e.g. _Open Loop_, _Closed Loop_, _Semi Closed Loop_.
+
+The choice of the above dimensions are motivated by questions like:
+
+- Sales/breakage by Gift Card Type (e.g. _Happy Student eCard_)
+- Sales/breakage by Category
+- Sales/breakage by card medium
+- Sales/breakage by business model
+- Breakage by customer
+
+
+[NOTE]
+====
+Keeping the above in view, a **star schema** is advisable. Also see suggested Distribution Style in a Redshift context
+in a later section.
+====
+
+==== Columns describing each dimension
+
+- `gift_card_id(FK)` : A unique id identifying a particular physical/digital card instance. A surrogate key will be used.
+- `customer_id(FK)` : Customer ID. A surrogate key will be used.
+- `gift_card_type_id(FK)` : Gift card type ID. A surrogate key will be used.
+- `merchant_id(FK)` : Merchant ID. A surrogate key will be used.
+- `gift_card_category(FK)` : Gift card category. A surrogate key will be used.
+- `gift_card_medium(FK)` : Gift card medium. A surrogate key will be used.
+- `gift_card_business_model(FK)` : Gift card business model. A surrogate key will be used.
+
+[NOTE]
+====
+Each of the above dimensions would lead to dimension datasets with non-overlapping data elements.
+====
+
+==== Lowest level of granularity
+
+The lowest level of granularity is: _redeemed value on a specific card._
+
+=== Designing the Dimension Tables
+
+
+=== Distribution Keys and Style
+
+
+=== Sort Keys
+
+
