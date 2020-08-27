@@ -1,0 +1,28 @@
+= Athena X
+Arun Patra <https://twitter.com/arunkpatra[@arunkpatra]>
+:revnumber: {project-version}
+:toc: left
+:toclevels: 3
+:doctype: book
+:sectanchors:
+:sectlinks:
+:sectnums:
+:icons: font
+:icon-set: fa
+:hide-uri-scheme:
+:last-update-label!:
+:tabsize: 2
+:pdf-version: 1.7
+
+[[athena-x-what-it-is]]
+== What is Athena X?
+
+Athena X takes off from where Athena stops.
+
+[[athena-x-motivation]]
+=== Motivation
+
+Scale up Athena.
+
+
+include::athena-x-data-model.adoc[]

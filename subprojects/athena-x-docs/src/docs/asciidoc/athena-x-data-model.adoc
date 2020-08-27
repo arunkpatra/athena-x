@@ -1,0 +1,4 @@
+[[athena-x-data-model]]
+== Introduction
+
+Athena X tries to deal with real world gift card transaction volumes.

@@ -1,0 +1,28 @@
+allprojects {
+    group = 'org.athena.x'
+    version = '1.0.0'
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    apply plugin: 'project-report'
+}
+
+subprojects {
+    apply plugin: 'maven-publish'
+    if (!(name.startsWith('athena-x-bom') ||
+            name.startsWith('athena-x-docs'))) {
+        apply plugin: 'java'
+        apply plugin: 'jacoco'
+    }
+
+    if (project.plugins.hasPlugin('java') || project.plugins.hasPlugin('java-library')) {
+        compileJava.options.encoding = "UTF-8"
+        compileTestJava.options.encoding = "UTF-8"
+        javadoc.options.encoding = 'UTF-8'
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}

@@ -1,0 +1,41 @@
+plugins {
+    id 'java-platform'
+}
+javaPlatform {
+    allowDependencies()
+}
+ext {
+
+}
+dependencies {
+    constraints {
+        api project(":athena-x-docs")
+        api 'junit:junit:4.12'
+    }
+}
+publishing {
+    publications {
+        thingverseBom(MavenPublication) {
+            artifactId = "athena-x-bom"
+            from components.javaPlatform
+            pom {
+                name = 'Athena X Platform'
+                description = 'Athena X Plaform Parent POM'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'arunkpatra'
+                        name = 'Arun Patra'
+                        email = 'arunkpatra@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,21 @@
+[[athena-x-generating-docs]]
+== Athena X Document Generation
+
+Athena X documentation can be generated using the following command.
+
+----
+$ cd subprojects/athena-x-docs
+$ gradle asciidoctor <1>
+$ gradle asciidoctorPdf <2>
+$ gradle generateAthenaXdocs <3>
+----
+<1> Creates `html` format documentation in the `build/docs/asciidoc` directory.
+<2> Creates a `pdf` format documentation in the `build/docs/asciidocPdf` directory.
+<3> Creates both `html` and `pdf` format documentation in the `build/athena-x/docs` directory.
+
+[NOTE]
+====
+Gradle should be installed and available in the path.
+====
+
+This will generate documentation in HTML and PDF format in the `build/athena-x/docs` directory.

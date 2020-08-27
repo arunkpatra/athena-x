@@ -1,0 +1,14 @@
+buildCache {
+    local {
+        directory = new File(rootDir, 'build-cache')
+        removeUnusedEntriesAfterDays = 30
+    }
+}
+
+rootProject.name = 'athena-x'
+include 'athena-x-bom'
+include 'athena-x-docs'
+
+rootProject.children.forEach { p -> p.projectDir = file("subprojects/$p.name")}
+
+
